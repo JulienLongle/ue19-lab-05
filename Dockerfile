@@ -1,4 +1,9 @@
-FROM ubuntu:latest
-LABEL authors="julien"
+FROM python:3.11-slim
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY app.py .
+
+RUN pip install requests
+
+CMD ["python", "app.py"]

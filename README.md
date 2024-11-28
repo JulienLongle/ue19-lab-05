@@ -10,17 +10,15 @@ en Belgique (code pays : BE).
 
 Pour exécuter ce script, vous devez avoir Docker installé sur votre système.
 
-### Installation de la bibliothèque requests
-
-Si vous n'avez pas encore installé la bibliothèque requests, vous pouvez l'installer avec pip :
-
-pip install requests
 
 ## Comment l'utiliser
 
-Utiliser le Dockerfile afin de lancer le fichier app.py.
-
-Entrez votre prénom lorsque cela est demandé.
+1. Lancez le fichier Dockerfile.
+2. Construisez l'image Docker :
+docker build -t app .
+3. Lancez le conteneur :
+docker run -it app
+4. Entrez votre prénom lorsque cela est demandé.
 
 Le programme récupérera l'âge estimé pour votre prénom et affichera le résultat.
 
