@@ -24,9 +24,10 @@ jobs:
     - name: Scan Docker image for vulnerabilities
       uses: aquasecurity/trivy-action@0.28.0
       with:
-        image-ref: ghcr.io/${{ github.repository }}/my-image:latest
+        image-ref: ghcr.io/julienlonge/ue19-lab-05/my-image:latest
         format: table          
-        exit-code: 0           
+        exit-code: 0 
+        ignore-unfixed: true
 
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
