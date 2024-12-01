@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+name: Build, Scan, and Publish Docker Image
 
 on:
   push:
@@ -10,12 +10,23 @@ permissions:
   packages: write
 
 jobs:
-  build-and-publish:
+  build-scan-publish:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+
+    - name: Build Docker image
+      run: |
+        docker build -t ghcr.io/julienlonge/ue19-lab-05/my-image:latest .
+
+    - name: Scan Docker image for vulnerabilities
+      uses: aquasecurity/trivy-action@v0.29.0
+      with:
+        image-ref: ghcr.io/${{ github.repository }}/my-image:latest
+        format: table          
+        exit-code: 0           
 
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
@@ -24,10 +35,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build Docker image
-      run: |
-        docker build -t ghcr.io/julienlongle/ue19-lab-05/my-image:latest .
-
+    # Étape 5 : Publier l'image Docker
     - name: Push Docker image
       run: |
-        docker push ghcr.io/julienlongle/ue19-lab-05/my-image:latest
+        docker push ghcr.io/julienlonge/ue19-lab-05/my-image:latest
