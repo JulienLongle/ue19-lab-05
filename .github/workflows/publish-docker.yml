@@ -22,8 +22,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ghcr.io/${{ github.repository }}/my-image:latest .
+        docker build -t ghcr.io/julienlongle/ue19-lab-05/my-image:latest .
 
     - name: Push Docker image
       run: |
-        docker push ghcr.io/${{ github.repository }}/my-image:latest
+        docker push ghcr.io/julienlongle/ue19-lab-05/my-image:latest
