@@ -27,7 +27,6 @@ jobs:
         image-ref: ghcr.io/julienlongle/ue19-lab-05/my-image:latest
         format: table          
         exit-code: 0 
-        ignore-unfixed: true
 
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
